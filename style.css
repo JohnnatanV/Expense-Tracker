@@ -1,0 +1,50 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(to top, #042700, #59b459);
+  color: whitesmoke;
+  font-family: "Special Elite", cursive;
+  min-height: 100vh;
+}
+
+header {
+  margin-top: 3rem;
+  font-size: 1.5rem;
+}
+
+header,
+form {
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form .form-conatiner {
+  flex: 1;
+}
+
+form input,
+form button {
+  margin: 0.2rem;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border: none;
+  background: white;
+}
+
+form button {
+  color: #042700;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+form button:hover {
+  background: #59b459;
+  color: white;
+}
