@@ -24,7 +24,7 @@ form {
   align-items: center;
 }
 
-form .form-conatiner {
+form {
   flex: 1;
 }
 
@@ -47,4 +47,32 @@ form button {
 form button:hover {
   background: #59b459;
   color: white;
+}
+
+/* EXPENCE LIST */
+.expence-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.expence-list {
+  min-width: 30%;
+  list-style: none;
+}
+
+.expence {
+  margin: 0.5rem;
+  background: white;
+  color: black;
+  font-family: "Special Elite", cursive;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: baseline;
+  transition: all 1s ease-in;
+}
+
+.expence li {
+  margin: 0.5rem;
 }

@@ -23,18 +23,30 @@
       <h1>The Expence Tracker</h1>
     </header>
 
-    <form class="form-container">
+    <form>
       <div class="expence-info">
-        <input type="text" placeholder="Name" />
-        <input type="date" placeholder="Date" />
+        <input type="text" placeholder="Name" class="name-info" />
+        <input type="date" placeholder="Date" class="date-info" />
       </div>
       <div class="expence-money">
-        <input type="number" placeholder="Amount" min="10" max="10000000" />
-        <input type="text" placeholder="Reason" />
+        <input
+          type="number"
+          placeholder="Amount"
+          min="10"
+          max="10000000"
+          class="amount-info"
+        />
+        <input type="text" placeholder="Reason" class="reason-info" />
       </div>
       <button type="submit" class="expence-button">
         <i class="far fa-arrow-alt-circle-down"></i>
       </button>
     </form>
+
+    <div class="expence-container">
+      <ul class="expence-list"></ul>
+    </div>
+
+    <script src="app.js"></script>
   </body>
 </html>
