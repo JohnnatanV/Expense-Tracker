@@ -57,7 +57,7 @@ form button:hover {
 }
 
 .expence-list {
-  min-width: 30%;
+  min-width: 90%;
   list-style: none;
 }
 
@@ -67,10 +67,9 @@ form button:hover {
   color: black;
   font-family: "Special Elite", cursive;
   font-size: 1rem;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: baseline;
-  transition: all 1s ease-in;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 40%;
+  transition: all 1s ease;
 }
 
 .expence li {

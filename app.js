@@ -39,8 +39,14 @@ function addExpence(event) {
   reasonItem.innerText = reasonInfo.value;
   reasonItem.classList.add("reason-item");
   expenceDiv.appendChild(reasonItem);
+
   //ADD TO LOCAL STORAGE
-  //saveLocalExpences()
+  // saveLocalExpences(
+  //   nameInfo.value,
+  //   dateInfo.value,
+  //   amountInfo.value,
+  //   reasonInfo.value
+  // );
 
   //APPEND LIST
   expenceList.appendChild(expenceDiv);
@@ -51,3 +57,19 @@ function addExpence(event) {
   amountInfo.value = "";
   reasonInfo.value = "";
 }
+
+// SAVE LOCAL EXPENCES
+// function saveLocalExpences(item1, item2, item3, item4) {
+//   if (localStorage.getItem("listExp") === null) {
+//     expences = [];
+//     listExp = [];
+//   } else {
+//     todos = JSON.parse(localStorage.getItem("listExp"));
+//   }
+//   expences.push(item1);
+//   expences.push(item2);
+//   expences.push(item3);
+//   expences.push(item4);
+//   listExp.push(expences);
+//   localStorage.setItem("listExp", JSON.stringify(listExp));
+// }
