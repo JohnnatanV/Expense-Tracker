@@ -49,16 +49,38 @@ form button:hover {
   color: white;
 }
 
-/* EXPENCE LIST */
+/* EXPENCE TABLE */
+table,
+th,
+td {
+  border: black 1px solid;
+  border-collapse: separate;
+  border-color: white;
+}
+
+th,
+td {
+  padding: 4px;
+}
 .expence-container {
+  margin: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .expence-list {
-  min-width: 90%;
-  list-style: none;
+  margin-top: 0.5rem;
+  min-width: 100%;
+}
+
+.expence-list caption {
+  margin: 0.5rem;
+}
+
+.expence-list tr {
+  background: white;
+  color: black;
 }
 
 .expence {
@@ -67,11 +89,5 @@ form button:hover {
   color: black;
   font-family: "Special Elite", cursive;
   font-size: 1rem;
-  display: grid;
-  grid-template-columns: 20% 20% 20% 40%;
   transition: all 1s ease;
-}
-
-.expence li {
-  margin: 0.5rem;
 }

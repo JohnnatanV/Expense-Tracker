@@ -17,25 +17,25 @@ function addExpence(event) {
   //Prevent Submiting Reaload
   event.preventDefault();
   // Expence DIV
-  const expenceDiv = document.createElement("div");
+  const expenceDiv = document.createElement("tr");
   expenceDiv.classList.add("expence");
   // Create  LI
-  const nameItem = document.createElement("li");
+  const nameItem = document.createElement("td");
   nameItem.innerText = nameInfo.value;
   nameItem.classList.add("name-item");
   expenceDiv.appendChild(nameItem);
 
-  const dateItem = document.createElement("li");
+  const dateItem = document.createElement("td");
   dateItem.innerText = dateInfo.value;
   dateItem.classList.add("date-item");
   expenceDiv.appendChild(dateItem);
 
-  const amountItem = document.createElement("li");
-  amountItem.innerText = amountInfo.value;
+  const amountItem = document.createElement("td");
+  amountItem.innerText = "$" + amountInfo.value;
   amountItem.classList.add("amount-item");
   expenceDiv.appendChild(amountItem);
 
-  const reasonItem = document.createElement("li");
+  const reasonItem = document.createElement("td");
   reasonItem.innerText = reasonInfo.value;
   reasonItem.classList.add("reason-item");
   expenceDiv.appendChild(reasonItem);
