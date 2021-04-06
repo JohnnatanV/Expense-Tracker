@@ -56,8 +56,9 @@ var division3 = num2 / entero2;
 // console.log(division3);
 
 expences = [];
-listExp = ["Angie", "04-04-2021", 5000, "Pelota"];
 
-expences.push(listExp);
+expences.push(["Angie", "04-04-2021", 5000, "Pelota"]);
+expences.push(["Johnn", "03-04-2021", 5000, "Pan"]);
+expences.push(["Angie", "02-04-2021", 5000, "Huevos"]);
 
 console.log(expences);
