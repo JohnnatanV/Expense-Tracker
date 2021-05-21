@@ -1,7 +1,7 @@
 //Selectors
+// Pocket
+const pocket = document.querySelector("#pocket");
 //Info
-const nameInfo = document.querySelector(".name-info");
-const dateInfo = document.querySelector(".date-info");
 const amountInfo = document.querySelector(".amount-info");
 const reasonInfo = document.querySelector(".reason-info");
 //Submit
@@ -10,6 +10,7 @@ const expenseBtn = document.querySelector(".expense-button");
 const expenseList = document.querySelector(".expense-list");
 
 // Event Listeners
+document.addEventListener("DOMContentLoaded", getExpenses);
 expenseBtn.addEventListener("click", addExpense);
 expenseList.addEventListener("click", deleteTrash);
 
@@ -21,13 +22,6 @@ function addExpense(event) {
   const expenseDiv = document.createElement("tr");
   expenseDiv.classList.add("expence");
   // Create  td
-  const nameItem = document.createElement("td");
-  nameItem.innerText = nameInfo.value;
-  expenseDiv.appendChild(nameItem);
-
-  const dateItem = document.createElement("td");
-  dateItem.innerText = dateInfo.value;
-  expenseDiv.appendChild(dateItem);
 
   const amountItem = document.createElement("td");
   amountItem.innerText = "$" + amountInfo.value;
@@ -37,25 +31,13 @@ function addExpense(event) {
   reasonItem.innerText = reasonInfo.value;
   expenseDiv.appendChild(reasonItem);
 
-  const trashBtn = document.createElement("button");
-  trashBtn.innerHTML = '<i class="fas fa-trash"></i>';
-  trashBtn.classList.add("trashBtn");
-  expenseDiv.appendChild(trashBtn);
-
   //ADD TO LOCAL STORAGE
-  saveLocalExpenses(
-    nameInfo.value,
-    dateInfo.value,
-    amountInfo.value,
-    reasonInfo.value
-  );
+  saveLocalExpenses(amountInfo.value, reasonInfo.value);
 
   //APPEND LIST
   expenseList.appendChild(expenseDiv);
 
   //Clear Inputs
-  nameInfo.value = "";
-  dateInfo.value = "";
   amountInfo.value = "";
   reasonInfo.value = "";
 }
@@ -71,14 +53,12 @@ function catchExpense() {
 }
 
 //SAVE LOCAL EXPENCES
-function saveLocalExpenses(item1, item2, item3, item4) {
+function saveLocalExpenses(item1, item2) {
   catchExpense();
 
   listExp = [];
   listExp.push(item1);
   listExp.push(item2);
-  listExp.push(item3);
-  listExp.push(item4);
   expenses.push(listExp);
   localStorage.setItem("expenses", JSON.stringify(expenses));
 }
@@ -86,6 +66,22 @@ function saveLocalExpenses(item1, item2, item3, item4) {
 //GET EXPENSES
 function getExpenses() {
   catchExpense();
+
+  expenses.forEach((expense) => {
+    const expenseDiv = document.createElement("tr");
+    expenseDiv.classList.add("expence");
+    // Create  td
+
+    const amountItem = document.createElement("td");
+    amountItem.innerText = "$" + expense[0];
+    expenseDiv.appendChild(amountItem);
+
+    const reasonItem = document.createElement("td");
+    reasonItem.innerText = expense[1];
+    expenseDiv.appendChild(reasonItem);
+
+    expenseList.appendChild(expenseDiv);
+  });
 }
 
 //DELETE EXPENCE
@@ -96,3 +92,5 @@ function deleteTrash(e) {
     const exp = item.parentElement;
   }
 }
+
+//POCKET
