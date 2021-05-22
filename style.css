@@ -43,7 +43,10 @@ form button {
   background: white;
 }
 
-form button {
+div button {
+  padding: 13px 25px;
+  text-align: center;
+  display: inline-block;
   color: #042700;
   background: white;
   cursor: pointer;

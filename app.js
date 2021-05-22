@@ -6,12 +6,14 @@ const amountInfo = document.querySelector(".amount-info");
 const reasonInfo = document.querySelector(".reason-info");
 //Submit
 const expenseBtn = document.querySelector(".expense-button");
+const incomeBtn = document.querySelector(".income-button");
 // List
 const expenseList = document.querySelector(".expense-list");
 
 // Event Listeners
 document.addEventListener("DOMContentLoaded", getExpenses);
 expenseBtn.addEventListener("click", addExpense);
+incomeBtn.addEventListener("click", addExpense);
 expenseList.addEventListener("click", deleteTrash);
 
 // Functions
@@ -36,6 +38,8 @@ function addExpense(event) {
 
   //APPEND LIST
   expenseList.appendChild(expenseDiv);
+
+  showPocket();
 
   //Clear Inputs
   amountInfo.value = "";
@@ -66,6 +70,7 @@ function saveLocalExpenses(item1, item2) {
 //GET EXPENSES
 function getExpenses() {
   catchExpense();
+  showPocket();
 
   expenses.forEach((expense) => {
     const expenseDiv = document.createElement("tr");
@@ -88,9 +93,12 @@ function getExpenses() {
 function deleteTrash(e) {
   const item = e.target;
   //delete
-  if (item.classList[0] === "trashBtn") {
-    const exp = item.parentElement;
-  }
 }
 
 //POCKET
+function showPocket() {
+  catchExpense();
+  let expN = expenses.map((exp) => parseFloat(exp[0]));
+  let total = expN.reduce((prev, next) => prev + next);
+  console.log(total);
+}
