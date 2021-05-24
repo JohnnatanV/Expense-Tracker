@@ -60,8 +60,9 @@ form button:hover {
 
 /* expense TABLE */
 table {
-  table-layout: fixed;
-  width: 250px;
+  table-layout: auto;
+  border-collapse: collapse;
+  border-spacing: 1px;
 }
 
 table,
@@ -77,6 +78,11 @@ td {
   padding: 4px;
   text-align: center;
 }
+
+.main-btn {
+  margin-top: 5px;
+}
+
 .expense-container {
   margin: 1rem;
   display: flex;
@@ -107,14 +113,15 @@ td {
   transition: all 1s ease;
 }
 
-.trashBtn {
-  background: #ec2f4b;
-  color: white;
-  padding: 0.4rem;
-  cursor: pointer;
-  font-size: 1rem;
+.btn-delete {
+  width: 60px;
+  background: #adadad;
 }
 
-.fa-trash {
-  pointer-events: none;
+.delete {
+  height: 25px;
+  width: 40px;
+  border: 0px;
+  border-radius: 5px;
+  cursor: pointer;
 }

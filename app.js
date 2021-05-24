@@ -6,15 +6,14 @@ const amountInfo = document.querySelector(".amount-info");
 const reasonInfo = document.querySelector(".reason-info");
 //Submit
 const expenseBtn = document.querySelector(".expense-button");
-const incomeBtn = document.querySelector(".income-button");
 // List
 const expenseList = document.querySelector(".expense-list");
+const list = document.querySelector(".list");
 
 // Event Listeners
 document.addEventListener("DOMContentLoaded", getExpenses);
 expenseBtn.addEventListener("click", addExpense);
-incomeBtn.addEventListener("click", addExpense);
-expenseList.addEventListener("click", deleteTrash);
+list.addEventListener("click", deleteTrash);
 
 // Functions
 function addExpense(event) {
@@ -22,7 +21,7 @@ function addExpense(event) {
   event.preventDefault();
   // Expense TR
   const expenseDiv = document.createElement("tr");
-  expenseDiv.classList.add("expence");
+  expenseDiv.classList.add("expense");
   // Create  td
 
   const amountItem = document.createElement("td");
@@ -33,11 +32,16 @@ function addExpense(event) {
   reasonItem.innerText = reasonInfo.value;
   expenseDiv.appendChild(reasonItem);
 
+  const btnDelete = document.createElement("td");
+  btnDelete.classList.add("btn-delete");
+  btnDelete.innerHTML = '<input type="button" class="delete" value="X" />';
+  expenseDiv.appendChild(btnDelete);
+
   //ADD TO LOCAL STORAGE
   saveLocalExpenses(amountInfo.value, reasonInfo.value);
 
   //APPEND LIST
-  expenseList.appendChild(expenseDiv);
+  list.appendChild(expenseDiv);
 
   showPocket();
 
@@ -74,24 +78,30 @@ function getExpenses() {
 
   expenses.forEach((expense) => {
     const expenseDiv = document.createElement("tr");
-    expenseDiv.classList.add("expence");
+    expenseDiv.classList.add("expense");
     // Create  td
 
     const amountItem = document.createElement("td");
-    amountItem.innerText = "$" + expense[0];
+    amountItem.innerText = `$ ${expense[0]}`;
     expenseDiv.appendChild(amountItem);
 
     const reasonItem = document.createElement("td");
     reasonItem.innerText = expense[1];
     expenseDiv.appendChild(reasonItem);
 
-    expenseList.appendChild(expenseDiv);
+    const btnDelete = document.createElement("td");
+    btnDelete.classList.add("btn-delete");
+    btnDelete.innerHTML = '<input type="button" class="delete" value="X" />';
+    expenseDiv.appendChild(btnDelete);
+
+    list.appendChild(expenseDiv);
   });
 }
 
 //DELETE EXPENCE
 function deleteTrash(e) {
   const item = e.target;
+  console.log(item);
   //delete
 }
 
@@ -100,5 +110,5 @@ function showPocket() {
   catchExpense();
   let expN = expenses.map((exp) => parseFloat(exp[0]));
   let total = expN.reduce((prev, next) => prev + next);
-  console.log(total);
+  pocket.innerText = `$ ${total}`;
 }
