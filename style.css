@@ -24,12 +24,6 @@ form {
   align-items: center;
 }
 
-#pocket {
-  text-align: center;
-  font-size: 90px;
-  filter: drop-shadow(0 0 5px black);
-}
-
 form {
   flex: 1;
 }
@@ -41,16 +35,6 @@ form button {
   font-size: 1.2rem;
   border: none;
   background: white;
-}
-
-div button {
-  padding: 13px 25px;
-  text-align: center;
-  display: inline-block;
-  color: #042700;
-  background: white;
-  cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 form button:hover {
@@ -79,8 +63,48 @@ td {
   text-align: center;
 }
 
+#pocket,
+#wallet {
+  text-align: center;
+  font-size: 70px;
+  filter: drop-shadow(0 0 5px black);
+}
+
+#display-wallet {
+  min-height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#display-form {
+  display: none;
+}
+
+.wallet {
+  margin: 0.2rem;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border: none;
+}
+
+.wallet-btn {
+  cursor: pointer;
+}
+
 .main-btn {
   margin-top: 5px;
+}
+
+.expense-button {
+  border-radius: 5px;
+  padding: 13px 25px;
+  text-align: center;
+  display: inline-block;
+  color: #042700;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .expense-container {
@@ -115,13 +139,23 @@ td {
 
 .btn-delete {
   width: 60px;
-  background: #adadad;
+  background: white;
 }
 
 .delete {
+  background: #ff5050;
+  color: white;
+  font-size: 15px;
   height: 25px;
   width: 40px;
   border: 0px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.delete:hover {
+  background: white;
+  color: #ff5050;
+  border: 1px solid #ff5050;
+  transition: all 0.3s ease;
 }

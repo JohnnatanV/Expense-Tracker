@@ -1,5 +1,8 @@
 //Selectors
-// Pocket
+// Wallet
+const walletBtn = document.querySelector(".wallet-btn");
+const walletInput = document.querySelector(".wallet");
+const wallet = document.querySelector("#wallet");
 const pocket = document.querySelector("#pocket");
 //Info
 const amountInfo = document.querySelector(".amount-info");
@@ -12,10 +15,27 @@ const list = document.querySelector(".list");
 
 // Event Listeners
 document.addEventListener("DOMContentLoaded", getExpenses);
+walletBtn.addEventListener("click", addWallet);
 expenseBtn.addEventListener("click", addExpense);
 list.addEventListener("click", deleteTrash);
 
 // Functions
+function addWallet(event) {
+  event.preventDefault();
+
+  const data = walletInput.value;
+  localStorage.setItem("wallet", data);
+
+  const hide = document.getElementById("display-wallet");
+  hide.style.display = "none";
+
+  const show = document.getElementById("display-form");
+  show.style.display = "flex";
+
+  wallet.innerText = `$ ${data}`;
+}
+
+// ADD EXPENSES
 function addExpense(event) {
   //Prevent Submiting Reaload
   event.preventDefault();
@@ -110,5 +130,5 @@ function showPocket() {
   catchExpense();
   let expN = expenses.map((exp) => parseFloat(exp[0]));
   let total = expN.reduce((prev, next) => prev + next);
-  pocket.innerText = `$ ${total}`;
+  pocket.innerText = `-$ ${total}`;
 }
