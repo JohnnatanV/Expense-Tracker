@@ -20,21 +20,23 @@ expenseBtn.addEventListener("click", addExpense);
 list.addEventListener("click", deleteTrash);
 
 // Functions
-function addWallet(event) {
-  event.preventDefault();
-
+function addWallet() {
   const data = walletInput.value;
   localStorage.setItem("wallet", data);
-
-  const hide = document.getElementById("display-wallet");
-  hide.style.display = "none";
-
-  const show = document.getElementById("display-form");
-  show.style.display = "flex";
-
+  hideShow();
   wallet.innerText = `$ ${data}`;
 }
 
+// HIDE AND SEEK
+function hideShow() {
+  if (localStorage.getItem("wallet") !== null) {
+    const hide = document.getElementById("display-wallet");
+    hide.style.display = "none";
+
+    const show = document.getElementById("display-form");
+    show.style.display = "flex";
+  }
+}
 // ADD EXPENSES
 function addExpense(event) {
   //Prevent Submiting Reaload
@@ -52,10 +54,10 @@ function addExpense(event) {
   reasonItem.innerText = reasonInfo.value;
   expenseDiv.appendChild(reasonItem);
 
-  const btnDelete = document.createElement("td");
-  btnDelete.classList.add("btn-delete");
-  btnDelete.innerHTML = '<input type="button" class="delete" value="X" />';
-  expenseDiv.appendChild(btnDelete);
+  // const btnDelete = document.createElement("td");
+  // btnDelete.classList.add("btn-delete");
+  // btnDelete.innerHTML = '<input type="button" class="delete" value="X" />';
+  // expenseDiv.appendChild(btnDelete);
 
   //ADD TO LOCAL STORAGE
   saveLocalExpenses(amountInfo.value, reasonInfo.value);
@@ -63,7 +65,7 @@ function addExpense(event) {
   //APPEND LIST
   list.appendChild(expenseDiv);
 
-  showPocket();
+  show();
 
   //Clear Inputs
   amountInfo.value = "";
@@ -94,7 +96,8 @@ function saveLocalExpenses(item1, item2) {
 //GET EXPENSES
 function getExpenses() {
   catchExpense();
-  showPocket();
+  hideShow();
+  show();
 
   expenses.forEach((expense) => {
     const expenseDiv = document.createElement("tr");
@@ -109,10 +112,10 @@ function getExpenses() {
     reasonItem.innerText = expense[1];
     expenseDiv.appendChild(reasonItem);
 
-    const btnDelete = document.createElement("td");
-    btnDelete.classList.add("btn-delete");
-    btnDelete.innerHTML = '<input type="button" class="delete" value="X" />';
-    expenseDiv.appendChild(btnDelete);
+    // const btnDelete = document.createElement("td");
+    // btnDelete.classList.add("btn-delete");
+    // btnDelete.innerHTML = '<input type="button" class="delete" value="X" />';
+    // expenseDiv.appendChild(btnDelete);
 
     list.appendChild(expenseDiv);
   });
@@ -121,14 +124,19 @@ function getExpenses() {
 //DELETE EXPENCE
 function deleteTrash(e) {
   const item = e.target;
-  console.log(item);
+  let tr = item.closest("tr");
+  // tr.remove();
   //delete
 }
 
 //POCKET
-function showPocket() {
+function show() {
   catchExpense();
   let expN = expenses.map((exp) => parseFloat(exp[0]));
   let total = expN.reduce((prev, next) => prev + next);
-  pocket.innerText = `-$ ${total}`;
+  pocket.innerText = `$ -${total}`;
+
+  let insideWallet = parseFloat(localStorage.getItem("wallet"));
+  insideWallet = insideWallet - total;
+  wallet.innerText = `$ ${insideWallet}`;
 }
