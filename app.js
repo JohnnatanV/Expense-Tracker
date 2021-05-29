@@ -99,7 +99,6 @@ function getExpenses() {
   catchExpense();
   hideShow();
   show();
-  removeLocal();
 
   expenses.forEach((expense) => {
     const expenseDiv = document.createElement("tr");
@@ -125,6 +124,7 @@ function getExpenses() {
 
 //DELETE EXPENCE
 function deleteTrash(e) {
+  removeLocal();
   const item = e.target;
   let tr = item.closest("tr");
   // tr.remove();
@@ -134,7 +134,11 @@ function deleteTrash(e) {
 function removeLocal() {
   catchExpense();
 
-  console.log(expenses);
+  expenses.forEach((x) => {
+    let td = document.querySelectorAll("td");
+
+    console.log(td);
+  });
 }
 
 //POCKET

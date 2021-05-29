@@ -67,14 +67,22 @@ td {
 #wallet {
   text-align: center;
   font-size: 70px;
-  filter: drop-shadow(0 0 5px black);
+  filter: drop-shadow(0 0 4px black);
+}
+
+#pocket {
+  color: #ffaaaa;
 }
 
 #display-wallet {
-  min-height: 10vh;
+  min-height: 8vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+#display-wallet button {
+  border-radius: 5px;
 }
 
 #display-form {
