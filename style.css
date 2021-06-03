@@ -7,7 +7,7 @@
 body {
   background: linear-gradient(to top, #408139, #98d398);
   color: whitesmoke;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial;
   min-height: 100vh;
 }
 
@@ -52,15 +52,19 @@ table {
 table,
 th,
 td {
-  border: black 1px solid;
-  border-collapse: separate;
-  border-color: white;
+  /* border: 1px solid white; */
+  border-collapse: collapse;
+  border-bottom: 1px solid #ddd;
 }
 
 th,
 td {
   padding: 4px;
   text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: #dfdfdf;
 }
 
 #pocket,
@@ -104,7 +108,8 @@ td {
   margin-top: 5px;
 }
 
-.expense-button {
+.expense-button,
+.clear {
   border-radius: 5px;
   padding: 13px 25px;
   text-align: center;
@@ -140,7 +145,6 @@ td {
   margin: 0.5rem;
   background: white;
   color: black;
-  font-family: cursive;
   font-size: 1rem;
   transition: all 1s ease;
 }
