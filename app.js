@@ -1,7 +1,6 @@
 //Selectors
 // Wallet
 const walletBtn = document.querySelector(".wallet-btn");
-const walletInput = document.querySelector(".wallet");
 const wallet = document.querySelector("#wallet");
 const pocket = document.querySelector("#pocket");
 //Info
@@ -24,44 +23,54 @@ list.addEventListener("click", deleteTrash);
 
 // Functions
 function addWallet() {
-  const data = walletInput.value;
-  localStorage.setItem("wallet", data);
-  hideShow();
+  const formWallet = document.querySelector("#display-wallet");
+  formWallet.onsubmit = (event) => {
+    event.preventDefault();
+    const data = document.querySelector("#walletInput").value;
+    localStorage.setItem("wallet", data);
+    hideShow();
+    amountInfo.focus();
+  };
 }
 
 // ADD EXPENSES
 function addExpense(event) {
-  //Prevent Submiting Reaload
-  // event.preventDefault();
-  // Expense TR
-  const expenseDiv = document.createElement("tr");
-  expenseDiv.classList.add("expense");
-  // Create  td
+  //Render Expense
+  const form = document.querySelector("#display-form");
+  form.onsubmit = (event) => {
+    //Prevent Submiting Reaload
+    event.preventDefault();
+    // Expense TR
+    const expenseDiv = document.createElement("tr");
+    expenseDiv.classList.add("expense");
+    // Create  td
 
-  const amountItem = document.createElement("td");
-  amountItem.innerText = "$" + amountInfo.value;
-  expenseDiv.appendChild(amountItem);
+    const amountItem = document.createElement("td");
+    amountItem.innerText = "$" + amountInfo.value;
+    expenseDiv.appendChild(amountItem);
 
-  const reasonItem = document.createElement("td");
-  reasonItem.innerText = reasonInfo.value;
-  expenseDiv.appendChild(reasonItem);
+    const reasonItem = document.createElement("td");
+    reasonItem.innerText = reasonInfo.value;
+    expenseDiv.appendChild(reasonItem);
 
-  const btnDelete = document.createElement("td");
-  btnDelete.classList.add("btn-delete");
-  btnDelete.innerHTML = '<button class="delete">X</button>';
-  expenseDiv.appendChild(btnDelete);
+    const btnDelete = document.createElement("td");
+    btnDelete.classList.add("btn-delete");
+    btnDelete.innerHTML = '<button class="delete">X</button>';
+    expenseDiv.appendChild(btnDelete);
 
-  //ADD TO LOCAL STORAGE
-  saveLocalExpenses(amountInfo.value, reasonInfo.value);
+    //ADD TO LOCAL STORAGE
+    saveLocalExpenses(amountInfo.value, reasonInfo.value);
 
-  //APPEND LIST
-  list.appendChild(expenseDiv);
+    //APPEND LIST
+    list.appendChild(expenseDiv);
 
-  show();
+    show();
 
-  //Clear Inputs
-  amountInfo.value = "";
-  reasonInfo.value = "";
+    //Clear Inputs
+    amountInfo.value = "";
+    reasonInfo.value = "";
+    amountInfo.focus();
+  };
 }
 
 //Reusable function for reload
@@ -110,26 +119,28 @@ function getExpenses() {
     expenseDiv.appendChild(btnDelete);
 
     list.appendChild(expenseDiv);
+    amountInfo.focus();
   });
 }
 
 //DELETE EXPENCE
 function deleteTrash(e) {
   catchExpense();
-
   const item = e.target;
-  let tr = item.closest("tr");
-  let node1 = tr.childNodes[0].innerText.split(" ").splice(1, 1)[0];
-  let node2 = tr.childNodes[1].innerText;
 
-  expenses.forEach((item) => {
-    if (item[0] === node1 && item[1] === node2) {
-      let dataIndex = expenses.indexOf(item);
-      expenses.splice(dataIndex, 1);
-      localStorage.setItem("expenses", JSON.stringify(expenses));
-      location.reload();
-    }
-  });
+  if (item.classList.value === "delete") {
+    let tr = item.closest("tr");
+    let node1 = tr.childNodes[0].innerText.split(" ").splice(1, 1)[0];
+    let node2 = tr.childNodes[1].innerText;
+    expenses.forEach((item) => {
+      if (item[0] === node1 && item[1] === node2) {
+        let dataIndex = expenses.indexOf(item);
+        expenses.splice(dataIndex, 1);
+        localStorage.setItem("expenses", JSON.stringify(expenses));
+        location.reload();
+      }
+    });
+  }
 }
 
 //POCKET
@@ -143,6 +154,10 @@ function show() {
 
   insideWallet = insideWallet - total;
   wallet.innerText = `$ ${insideWallet}`;
+
+  if (insideWallet <= 0) {
+    alert("Se acabo la plata parce");
+  }
 }
 
 // HIDE AND SEEK
@@ -159,5 +174,6 @@ function hideShow() {
 
 function clean() {
   localStorage.clear();
+  walletInput.value = "";
   location.reload();
 }

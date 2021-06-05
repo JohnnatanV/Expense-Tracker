@@ -72,9 +72,11 @@ tr:nth-child(even) {
   text-align: center;
   font-size: 70px;
   filter: drop-shadow(0 0 4px black);
+  cursor: default;
 }
 
 #pocket {
+  font-size: 50px;
   color: #ffaaaa;
 }
 
@@ -93,7 +95,7 @@ tr:nth-child(even) {
   display: none;
 }
 
-.wallet {
+.walletInput {
   margin: 0.2rem;
   padding: 0.5rem;
   font-size: 1.2rem;
