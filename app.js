@@ -69,6 +69,7 @@ function addExpense(event) {
     //Clear Inputs
     amountInfo.value = "";
     reasonInfo.value = "";
+    location.reload();
     amountInfo.focus();
   };
 }
@@ -156,7 +157,7 @@ function show() {
   wallet.innerText = `$ ${insideWallet}`;
 
   if (insideWallet <= 0) {
-    alert("Se acabo la plata parce");
+    alert("Se acabo el billete");
   }
 }
 
