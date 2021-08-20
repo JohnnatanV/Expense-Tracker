@@ -4,85 +4,65 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap"
-      rel="stylesheet"
-    />
-
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
       crossorigin="anonymous"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Eczar:wght@500&family=Roboto+Condensed&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
-    <title>expense Tracker</title>
+    <title>Budget Tracker</title>
   </head>
+  <script src="app.js"></script>
   <body>
-    <header>
-      <h1>Budget Tracker</h1>
-    </header>
-    <form id="display-wallet">
-      <input
-        type="number"
-        min="1000"
-        placeholder="Money Wallet"
-        id="walletInput"
-        class="walletInput"
-        required
-      />
-      <button type="submit" class="wallet wallet-btn">Add</button>
-    </form>
-    <div id="wallet"></div>
-    <div id="pocket"></div>
-    <form id="display-form">
-      <div>
+    <div class="container">
+      <header><h1>Budget App</h1></header>
+      <div class="balance">
+        <div class="tittle">Balance</div>
+        <div class="value">$</div>
+      </div>
+      <div class="wallet">
+        <div class="income">
+          <div class="tittle">Income</div>
+          <div class="value">$1000</div>
+        </div>
+        <div class="canvas"></div>
+        <div class="outcome">
+          <div class="tittle">Outcome</div>
+          <div class="value">-$</div>
+        </div>
+      </div>
+      <form class="money">
         <input
           type="number"
-          placeholder="Amount"
-          min="100"
-          max="10000"
-          class="amount-info"
-          id="amount-info"
-          autofocus
+          name=""
+          id="number"
+          min="10"
+          placeholder="Tittle"
           required
         />
-        <input
-          type="text"
-          placeholder="Reason"
-          class="reason-info"
-          id="reason-info"
-          autocomplete="off"
-          required
-        />
+        <input type="text" name="" id="text" placeholder="Money" required />
+        <button class="money"><i class="fas fa-wallet"></i></button>
+      </form>
+      <div class="dashboard">
+        <div class="pages">
+          <div class="incomeBtn">Income</div>
+          <div class="outcomeBtn">Outcome</div>
+          <div class="allBtn">All</div>
+        </div>
+        <div class="board">
+          <div class="data">
+            <div>$1000</div>
+            <button class="trash" type="submit">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        </div>
       </div>
-      <div class="main-btn">
-        <button type="submit" class="expense-button">
-          <i class="far fa-arrow-alt-circle-down"></i> Expense
-        </button>
-        <button type="button" class="clear">
-          <i class="fas fa-times"></i> Clear all
-        </button>
-      </div>
-    </form>
-    <section class="row">
-      <div class="expense-container">
-        <table class="expense-list">
-          <caption>
-            Add Items
-          </caption>
-          <thead>
-            <tr>
-              <th>Amount</th>
-              <th>Reason</th>
-            </tr>
-          </thead>
-          <tbody class="list"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <script src="app.js"></script>
+    </div>
   </body>
 </html>
