@@ -17,23 +17,22 @@
     <link rel="stylesheet" href="style.css" />
     <title>Budget Tracker</title>
   </head>
-  <script src="app.js"></script>
   <body>
     <div class="container">
       <header><h1>Budget App</h1></header>
       <div class="balance">
         <div class="tittle">Balance</div>
-        <div class="value">$</div>
+        <div class="value balanceValue">$1000</div>
       </div>
       <div class="wallet">
         <div class="income">
           <div class="tittle">Income</div>
-          <div class="value">$1000</div>
+          <div class="value incomeValue">$1000</div>
         </div>
         <div class="canvas"></div>
         <div class="outcome">
-          <div class="tittle">Outcome</div>
-          <div class="value">-$</div>
+          <div class="tittle">Expenses</div>
+          <div class="value outcomeValue">-$</div>
         </div>
       </div>
       <form class="money">
@@ -42,27 +41,37 @@
           name=""
           id="number"
           min="10"
-          placeholder="Tittle"
+          placeholder="Money"
           required
         />
-        <input type="text" name="" id="text" placeholder="Money" required />
-        <button class="money"><i class="fas fa-wallet"></i></button>
+        <input type="text" name="" id="text" placeholder="Tittle" required />
+        <select name="movement" id="movement">
+          <option value="income">Income</option>
+          <option value="outcome">Outcome</option>
+        </select>
+        <button class="moneyBtn fas fa-wallet" type="submit"></button>
       </form>
       <div class="dashboard">
         <div class="pages">
           <div class="incomeBtn">Income</div>
-          <div class="outcomeBtn">Outcome</div>
+          <div class="outcomeBtn">Expenses</div>
           <div class="allBtn">All</div>
         </div>
         <div class="board">
-          <div class="data">
+          <div class="data" id="0">
             <div>$1000</div>
-            <button class="trash" type="submit">
-              <i class="fas fa-trash-alt"></i>
-            </button>
+            <div>
+              <button class="edit" type="submit">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="trash" type="submit">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <script src="app.js"></script>
   </body>
 </html>

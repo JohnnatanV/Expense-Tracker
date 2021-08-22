@@ -13,13 +13,19 @@ body {
 }
 
 h1 {
-  font-size: 1.5em;
+  font-size: 1.6em;
   margin-bottom: 15px;
   text-align: center;
 }
 
+.tittle {
+  font-size: 1.3em;
+}
+
 .value {
   font-family: "Eczar", serif;
+  font-size: 1.1em;
+  padding-left: 5px;
 }
 
 /* MAIN ELEMENTS */
@@ -73,7 +79,7 @@ form {
 }
 
 input {
-  width: 120px;
+  width: 110px;
   border-radius: 5px;
 }
 
@@ -107,6 +113,7 @@ input {
 /* BUTTONS */
 
 button {
+  margin: 3px;
   padding: 3px 15px;
   border-radius: 20%;
   border: none;
@@ -120,5 +127,16 @@ button {
 @media screen and (max-width: 450px) {
   .container {
     width: 320px;
+  }
+
+  form {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 4px;
+  }
+
+  form .moneyBtn {
+    justify-self: center;
+    width: 50px;
   }
 }
