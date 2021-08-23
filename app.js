@@ -2,8 +2,8 @@
 //info
 const money = document.querySelector("#number");
 const tittle = document.querySelector("#text");
-const addMoney = document.querySelector(".moneyBtn");
 const movement = document.querySelector("#movement");
+const addMoney = document.querySelector(".moneyBtn");
 //other-buttons
 const edit = document.querySelector(".edit");
 const trash = document.querySelector(".trash");
@@ -11,10 +11,10 @@ const trash = document.querySelector(".trash");
 const balanceValue = document.querySelector(".balanceValue");
 
 // EVENTS
-addMoney.addEventListener("click", add);
+addMoney.addEventListener("click", addToken);
 
 // FUNCTIONS
-function add(event) {
+function addToken(event) {
   event.preventDefault();
   const show = document.querySelector(".board");
 
@@ -43,6 +43,42 @@ function add(event) {
 
   addData.appendChild(edition);
 
+  if (!money.value && !tittle.value) {
+    alert("Need arguments to continue");
+    return;
+  } else if (!money.value || !tittle.value) {
+    alert("One of the arguments is missing");
+    return;
+  } else {
+    saveLocalWallet(money.value, tittle.value, movement.value);
+  }
+
   show.appendChild(addData);
+
+  tittle.value = "";
+  money.value = "";
+  money.focus();
   console.log(`$${money.value}, ${tittle.value}, ${movement.value}`);
+}
+
+//Reusable function for reload
+function catchMoney() {
+  if (localStorage.getItem("wallet") === null) {
+    wallet = [];
+  } else {
+    wallet = JSON.parse(localStorage.getItem("wallet"));
+  }
+  return wallet;
+}
+
+//SAVE LOCAL EXPENCES
+function saveLocalWallet(item1, item2, item3) {
+  catchMoney();
+
+  listExp = [];
+  listExp.push(item1);
+  listExp.push(item2);
+  listExp.push(item3);
+  wallet.push(listExp);
+  localStorage.setItem("wallet", JSON.stringify(wallet));
 }

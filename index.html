@@ -15,7 +15,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-    <title>Budget Tracker</title>
+    <title>Budget App</title>
+    <script defer src="app.js"></script>
   </head>
   <body>
     <div class="container">
@@ -49,7 +50,9 @@
           <option value="income">Income</option>
           <option value="outcome">Outcome</option>
         </select>
-        <button class="moneyBtn fas fa-wallet" type="submit"></button>
+        <button class="moneyBtn">
+          <i class="fas fa-wallet"></i>
+        </button>
       </form>
       <div class="dashboard">
         <div class="pages">
@@ -58,8 +61,8 @@
           <div class="allBtn">All</div>
         </div>
         <div class="board">
-          <div class="data" id="0">
-            <div>$1000</div>
+          <div class="data">
+            <div class="value">$1000</div>
             <div>
               <button class="edit" type="submit">
                 <i class="fas fa-edit"></i>
@@ -72,6 +75,5 @@
         </div>
       </div>
     </div>
-    <script src="app.js"></script>
   </body>
 </html>

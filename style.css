@@ -67,14 +67,14 @@ form {
   justify-content: space-evenly;
 }
 
-/* SUB--ELEMENTS */
+/* SUB-ELEMENTS */
 
 .balance div,
 .wallet div {
   margin: 8px;
 }
 
-.wallet .outcome .value {
+.outcome .value {
   color: #e30425;
 }
 
