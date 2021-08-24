@@ -1,84 +1,89 @@
 // SELECTORS
 //info
-const money = document.querySelector("#number");
-const tittle = document.querySelector("#text");
-const movement = document.querySelector("#movement");
+const moneyInput = document.querySelector("#amountInput");
+const tittleInput = document.querySelector("#tittleInput");
+const movementType = document.querySelector("#movement");
 const addMoney = document.querySelector(".moneyBtn");
 //other-buttons
-const edit = document.querySelector(".edit");
-const trash = document.querySelector(".trash");
+const edit = document.querySelector(".editBtn");
+const trash = document.querySelector(".trashBtn");
 //screen
-const balanceValue = document.querySelector(".balanceValue");
+const balanceValue = document.querySelector(".balance .value");
+const incomeValue = document.querySelector(".income .value");
+const outcomeValue = document.querySelector(".outcome .value");
+const inBoard = document.querySelector(".board");
+//Pages
+const incomeScreen = document.querySelector("#incomeBtn");
+const outcomeScreen = document.querySelector("#outcomeBtn");
+const allScreen = document.querySelector("#allBtn");
+const incomeElem = document.querySelector(["[type='income'"]);
+const outcomeElem = document.querySelector(["[type='outcome'"]);
+
+//GLOBAL VARIABLE
+let ENTRY_LIST = [];
+let balance = 0,
+  income = 0,
+  outcome = 0;
+
+const DELETE = "delete",
+  EDIT = "edit";
 
 // EVENTS
-addMoney.addEventListener("click", addToken);
+// addMoney.addEventListener("click", addToken);
+
+//board events
+incomeScreen.addEventListener("click", function () {
+  // show(incomeElem);
+  // hide(outcomeElem);
+  active(incomeScreen);
+  inactive([outcomeScreen, allScreen]);
+});
+
+outcomeScreen.addEventListener("click", function () {
+  // show(outcomeElem);
+  // hide(incomeElem);
+  active(outcomeScreen);
+  inactive([incomeScreen, allScreen]);
+});
+
+allScreen.addEventListener("click", function () {
+  // show([incomeElem, outcomeElem]);
+  active(allScreen);
+  inactive([incomeScreen, outcomeScreen]);
+});
 
 // FUNCTIONS
-function addToken(event) {
+function show(elements) {
+  if (Array.isArray(elements)) {
+    elements.forEach((element) => element.classList.remove("hide"));
+  }
+  elements.classList.remove("hide");
+}
+
+function hide(elements) {
+  elements.forEach((element) => element.classList.add("hide"));
+}
+
+function active(element) {
+  element.classList.add("active");
+}
+
+function inactive(elements) {
+  elements.forEach((element) => element.classList.remove("active"));
+}
+
+//
+addMoney.addEventListener("click", function (event) {
   event.preventDefault();
-  const show = document.querySelector(".board");
 
-  const addData = document.createElement("div");
-  addData.classList.add("data");
+  if (!moneyInput.value || !tittleInput.value) return;
 
-  const move = document.createAttribute("type");
-  move.value = movement.value;
-  addData.setAttributeNode(move);
+  let ENTRY = {
+    type: movementType.value,
+    tittle: tittleInput.value,
+    amount: parseFloat(moneyInput.value),
+  };
 
-  addData.innerHTML = `<div class="value">$${money.value}</div>`;
-
-  const edition = document.createElement("div");
-
-  const edit = document.createElement("button");
-  edit.classList.add("edit");
-  edit.type = "submit";
-  edit.innerHTML = `<i class="fas fa-edit"></i>`;
-  edition.appendChild(edit);
-
-  const trash = document.createElement("button");
-  trash.classList.add("trash");
-  trash.type = "submit";
-  trash.innerHTML = `<i class="fas fa-trash-alt"></i>`;
-  edition.appendChild(trash);
-
-  addData.appendChild(edition);
-
-  if (!money.value && !tittle.value) {
-    alert("Need arguments to continue");
-    return;
-  } else if (!money.value || !tittle.value) {
-    alert("One of the arguments is missing");
-    return;
-  } else {
-    saveLocalWallet(money.value, tittle.value, movement.value);
-  }
-
-  show.appendChild(addData);
-
-  tittle.value = "";
-  money.value = "";
-  money.focus();
-  console.log(`$${money.value}, ${tittle.value}, ${movement.value}`);
-}
-
-//Reusable function for reload
-function catchMoney() {
-  if (localStorage.getItem("wallet") === null) {
-    wallet = [];
-  } else {
-    wallet = JSON.parse(localStorage.getItem("wallet"));
-  }
-  return wallet;
-}
-
-//SAVE LOCAL EXPENCES
-function saveLocalWallet(item1, item2, item3) {
-  catchMoney();
-
-  listExp = [];
-  listExp.push(item1);
-  listExp.push(item2);
-  listExp.push(item3);
-  wallet.push(listExp);
-  localStorage.setItem("wallet", JSON.stringify(wallet));
-}
+  ENTRY_LIST.push(ENTRY);
+  console.log(ENTRY_LIST);
+});

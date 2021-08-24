@@ -6,10 +6,13 @@
   font-size: 20px;
 }
 
+:root {
+  --background-main: #5d1049;
+  --background-second: #720d5d;
+}
+
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background: #333;
 }
 
 h1 {
@@ -19,18 +22,28 @@ h1 {
 }
 
 .tittle {
-  font-size: 1.3em;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.dashboard .tittle {
+  font-size: 1.4em;
+  margin: 10px 20px;
 }
 
 .value {
-  font-family: "Eczar", serif;
-  font-size: 1.1em;
+  font-size: 1em;
+  font-weight: 800;
   padding-left: 5px;
 }
 
 /* MAIN ELEMENTS */
 
 .container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
   width: 450px;
   padding-top: 30px;
   border-radius: 10px 10px 0 0;
@@ -40,14 +53,18 @@ h1 {
 
 .balance {
   margin: 5px 15px;
-  padding: 5px;
+  padding: 5px 20px;
   background: #720d5d;
+}
+
+.balance .value {
+  font-size: 1.8em;
 }
 
 .wallet {
   display: flex;
   justify-content: space-around;
-  margin: 15px 15px;
+  margin: 15px;
   padding: auto;
   background: #720d5d;
 }
@@ -71,7 +88,7 @@ form {
 
 .balance div,
 .wallet div {
-  margin: 8px;
+  margin: 8px 0;
 }
 
 .outcome .value {
@@ -81,22 +98,52 @@ form {
 input {
   width: 110px;
   border-radius: 5px;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  padding: 4px;
+}
+
+input:focus {
+  background: #ddd;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 .pages {
   display: grid;
   grid-template-columns: repeat(3, auto);
   grid-gap: 2px;
-  background-color: #ccc;
-  padding: 2px;
-  margin: 4px;
+  padding: 0 2px;
+  margin: 0 4px;
   grid-auto-flow: column;
 }
 
-.pages > div {
-  background-color: #eee;
+.pages div {
+  background: #eee;
+  border-radius: 10px;
+  margin: 1px;
   text-align: center;
   cursor: pointer;
+  color: #0000005a;
+}
+
+.pages .active {
+  color: #000000;
+}
+
+.hide {
+  display: none;
 }
 
 .board {
@@ -110,6 +157,10 @@ input {
   justify-content: space-between;
 }
 
+.board .value {
+  font-weight: 100;
+}
+
 /* BUTTONS */
 
 button {
@@ -117,6 +168,7 @@ button {
   padding: 3px 15px;
   border-radius: 20%;
   border: none;
+  cursor: pointer;
 }
 
 .trash {
@@ -129,7 +181,7 @@ button {
     width: 320px;
   }
 
-  form {
+  form div {
     display: grid;
     grid-template-columns: auto auto;
     gap: 4px;
