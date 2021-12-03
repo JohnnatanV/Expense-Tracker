@@ -4,78 +4,91 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap"
       rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+    />
+    <script
+      src="https://kit.fontawesome.com/f8c00bd5ae.js"
       crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Eczar:wght@500&family=Roboto+Condensed&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <title>Budget App</title>
-    <script defer src="app.js"></script>
+    ></script>
+
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <title>Aplicación Presupuesto</title>
   </head>
   <body>
-    <div class="container">
-      <header><h1>Budget App</h1></header>
-      <div class="balance">
-        <div class="tittle">Balance</div>
-        <div class="value"><small>$</small>0</div>
-      </div>
-      <div class="wallet">
-        <div class="income">
-          <div class="tittle">Income</div>
-          <div class="value"><small>$</small>0</div>
+    <div class="header">
+      <div class="budget">
+        <h1 class="budget_title">Presupuesto Disponible</h1>
+        <div class="budget_value" id="budget">0</div>
+        <div class="budget_income cleanStyles">
+          <div class="budget_income--text">Ingresos</div>
+          <div class="right">
+            <div class="budget_income--value" id="incomes">0</div>
+            <div class="budget_income--percentage">&nbsp;</div>
+          </div>
         </div>
-        <div class="canvas">A</div>
-        <!-- PENDIENTE REVISAR LA DISTRIBUCIÓN DE WALLET EN RESPONSIVE DESING -->
-        <div class="outcome">
-          <div class="tittle">Expenses</div>
-          <div class="value"><small>$</small>0</div>
+        <div class="budget_outcome cleanStyles">
+          <div class="budget_outcome--text">Egresos</div>
+          <div class="right">
+            <div class="budget_outcome--value" id="outcomes">-0</div>
+            <div class="budget_outcome--percentage" id="percentage">0%;</div>
+          </div>
         </div>
       </div>
-      <form id="formMoney">
-        <div>
-          <input
-            type="number"
-            name=""
-            id="amountInput"
-            min="10"
-            placeholder="Money"
-            required
-            autofocus
-          />
+    </div>
+
+    <form action="" id="form_budget" onsubmit="return false;">
+      <div class="add">
+        <div class="add_container">
+          <select name="" class="add_type" id="type">
+            <option class="option" value="income" selected>Ingreso</option>
+            <option class="option" value="outcome">Egreso</option>
+          </select>
           <input
             type="text"
             name=""
-            id="tittleInput"
-            placeholder="Tittle"
-            autocomplete="off"
+            id="description"
+            class="add_description"
+            placeholder="Agregar descripción"
+            autocomplete="none"
             required
           />
-          <select name="movement" id="movement">
-            <option value="income">Income</option>
-            <option value="outcome">Expense</option>
-          </select>
-        </div>
-        <div>
-          <button class="moneyBtn">
-            <i class="fas fa-wallet"></i>
+          <input
+            type="number"
+            name=""
+            id="value"
+            class="add_value"
+            placeholder="Valor"
+            step="any"
+            min="0"
+            required
+          />
+          <button class="add_btn" onclick="addData()">
+            <i class="fa-regular fa-circle-check"></i>
           </button>
         </div>
-      </form>
-      <div class="dashboard">
-        <div class="tittle">Board</div>
-        <div class="pages">
-          <div id="incomeBtn">Income</div>
-          <div id="outcomeBtn">Expenses</div>
-          <div id="allBtn" class="active">All</div>
-        </div>
-        <div class="board"></div>
+      </div>
+    </form>
+
+    <div class="container cleanStyles">
+      <div class="income">
+        <h2 class="income_title">Ingresos</h2>
+        <div id="incomes-list"></div>
+      </div>
+
+      <div class="outcome">
+        <h2 class="outcome_title">Egresos</h2>
+        <div id="outcomes-list"></div>
       </div>
     </div>
+
+    <script src="assets/js/Data.js"></script>
+    <script src="assets/js/Income.js"></script>
+    <script src="assets/js/Outcome.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/restore.js"></script>
   </body>
 </html>
